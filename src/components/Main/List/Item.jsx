@@ -5,6 +5,7 @@ export default function Item({ todo }) {
 }
 
 Item.propTypes = {
+  // TODO: Move this type into its own file and import it
   todo: PropTypes.exact({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
