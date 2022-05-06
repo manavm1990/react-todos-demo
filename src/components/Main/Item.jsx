@@ -1,7 +1,8 @@
 import apiService from "@/api.service";
 import Todo from "@/types/Todo";
+import PropTypes from "prop-types";
 
-export default function Item({ todo }) {
+export default function Item({ todo, dispatch }) {
   return (
     <li className={todo.completed ? "completed" : null}>
       {todo.text}
@@ -11,7 +12,7 @@ export default function Item({ todo }) {
         onChange={() => {
           const updatedTodo = { ...todo, completed: !todo.completed };
           apiService.update(updatedTodo);
-          // TODO: dispatch({ type: "UPDATE", payload: updatedTodo });
+          dispatch({ type: "UPDATE", payload: updatedTodo });
         }}
       />
 
@@ -21,5 +22,6 @@ export default function Item({ todo }) {
 }
 
 Item.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   todo: Todo.isRequired,
 };
