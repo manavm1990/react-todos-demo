@@ -50,6 +50,7 @@ export default function Main() {
     };
 
     apiService.create(newTodo).then((updatedTodo) => {
+      form.reset();
       dispatch({ type: "CREATE", payload: updatedTodo });
     });
   };
