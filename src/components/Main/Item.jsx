@@ -1,5 +1,6 @@
 import apiService from "@/api.service";
 import Todo from "@/types/Todo";
+import Button from "@components/Button";
 import PropTypes from "prop-types";
 
 export default function Item({ todo, dispatch }) {
@@ -16,7 +17,19 @@ export default function Item({ todo, dispatch }) {
         }}
       />
 
-      {/* TODO: Add Buttons that will dispatch delete and edits */}
+      <Button
+        className="button-del"
+        handleClick={() => {
+          console.log("delete");
+        }}
+      />
+
+      <Button
+        className="button-edit"
+        handleClick={() => {
+          console.log("edit");
+        }}
+      />
     </li>
   );
 }
