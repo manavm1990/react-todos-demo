@@ -35,10 +35,16 @@ export default function Main() {
   };
 
   const handleSubmit = (e) => {
-    // TODO: If currentTodo already has an id, update it.
-    // Otherwise, create it.
     e.preventDefault();
     const form = e.target;
+
+    if (inputTodo.id) {
+      apiService.update(inputTodo).then((updatedTodoResp) => {
+        setInputTodo({});
+        dispatch({ type: "UPDATE", payload: updatedTodoResp });
+      });
+      return;
+    }
 
     const myFormData = new FormData(form);
     const newTodo = {
@@ -47,9 +53,9 @@ export default function Main() {
       ...Object.fromEntries(myFormData),
     };
 
-    apiService.create(newTodo).then((updatedTodo) => {
-      form.reset();
-      dispatch({ type: "CREATE", payload: updatedTodo });
+    apiService.create(newTodo).then((newTodoResp) => {
+      setInputTodo({});
+      dispatch({ type: "CREATE", payload: newTodoResp });
     });
   };
 
