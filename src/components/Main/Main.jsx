@@ -1,7 +1,7 @@
 import apiService from "@/api.service";
 import React from "react";
-import List from "./List/List";
 import Form from "./Form/Form";
+import List from "./List/List";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -40,7 +40,18 @@ export default function Main() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+    const form = e.target;
+    const text = form.elements[0].value;
+    const newTodo = {
+      // TODO: Array.prototype.sort() to find the highest id...
+      id: state.length + 1,
+      text,
+      completed: false,
+    };
+
+    apiService.create(newTodo).then((updatedTodo) => {
+      dispatch({ type: "CREATE", payload: updatedTodo });
+    });
   };
 
   React.useEffect(() => {
