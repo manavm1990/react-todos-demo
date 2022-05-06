@@ -41,12 +41,12 @@ export default function Main() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const text = form.elements[0].value;
+
+    const myFormData = new FormData(form);
     const newTodo = {
-      // TODO: Array.prototype.sort() to find the highest id...
       id: state.length + 1,
-      text,
       completed: false,
+      ...Object.fromEntries(myFormData),
     };
 
     apiService.create(newTodo).then((updatedTodo) => {
