@@ -27,9 +27,16 @@ function reducer(state, action) {
 }
 
 export default function Main() {
+  const [inputTodo, setInputTodo] = React.useState({});
   const [state, dispatch] = React.useReducer(reducer, []);
 
+  const handleChange = (event) => {
+    setInputTodo((prev) => ({ ...prev, text: event.target.value }));
+  };
+
   const handleSubmit = (e) => {
+    // TODO: If currentTodo already has an id, update it.
+    // Otherwise, create it.
     e.preventDefault();
     const form = e.target;
 
@@ -55,13 +62,18 @@ export default function Main() {
   return (
     <main>
       <Form submitHandler={handleSubmit}>
-        <Input />
+        <Input changeHandler={handleChange} inputTodo={inputTodo} />
         <Button text="Submit" className="button-add" />
       </Form>
 
       <ol>
         {state.map((todo) => (
-          <Item key={todo.id} todo={todo} dispatch={dispatch} />
+          <Item
+            key={todo.id}
+            todo={todo}
+            dispatch={dispatch}
+            setInputTodo={setInputTodo}
+          />
         ))}
       </ol>
     </main>

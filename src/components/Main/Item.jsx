@@ -3,7 +3,7 @@ import Todo from "@/types/Todo";
 import Button from "@components/Button";
 import PropTypes from "prop-types";
 
-export default function Item({ todo, dispatch }) {
+export default function Item({ todo, dispatch, setInputTodo }) {
   return (
     <li className={todo.completed ? "completed" : null}>
       {todo.text}
@@ -27,7 +27,7 @@ export default function Item({ todo, dispatch }) {
       <Button
         className="button-edit"
         handleClick={() => {
-          console.log("edit");
+          setInputTodo(todo);
         }}
       />
     </li>
@@ -36,5 +36,6 @@ export default function Item({ todo, dispatch }) {
 
 Item.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  setInputTodo: PropTypes.func.isRequired,
   todo: Todo.isRequired,
 };
