@@ -69,7 +69,12 @@ export default function Main() {
     <main>
       <Form submitHandler={handleSubmit}>
         <Input changeHandler={handleChange} inputTodo={inputTodo} />
-        <Button text="Submit" className="button-add" />
+
+        {/* TODO: Disable this button if input is empty */}
+        <Button
+          text={inputTodo.id ? "Update" : "Create"}
+          className="button-add"
+        />
       </Form>
 
       <ol>

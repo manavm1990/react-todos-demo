@@ -11,6 +11,7 @@ export default function Input({ changeHandler, inputTodo }) {
         name="text"
         value={inputTodo.text || ""}
         onChange={changeHandler}
+        required
       />
       <label htmlFor="new-todo">What needs to be done?</label>
     </div>

@@ -12,15 +12,18 @@ export default function Item({ todo, dispatch, setInputTodo }) {
         checked={todo.completed}
         onChange={() => {
           const updatedTodo = { ...todo, completed: !todo.completed };
-          apiService.update(updatedTodo);
-          dispatch({ type: "UPDATE", payload: updatedTodo });
+          apiService.update(updatedTodo).then((updatedTodoResp) => {
+            dispatch({ type: "UPDATE", payload: updatedTodoResp });
+          });
         }}
       />
 
       <Button
         className="button-del"
         handleClick={() => {
-          console.log("delete");
+          apiService.delete(todo).then(() => {
+            dispatch({ type: "DELETE", payload: todo });
+          });
         }}
       />
 
