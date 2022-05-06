@@ -1,6 +1,7 @@
 import apiService from "@/api.service";
 import React from "react";
 import List from "./List/List";
+import Form from "./Form/Form";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -45,6 +46,7 @@ export default function Main() {
 
   return (
     <main>
+      <Form />
       <List todos={state} />
     </main>
   );
