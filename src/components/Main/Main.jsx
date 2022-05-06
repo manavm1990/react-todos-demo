@@ -1,7 +1,9 @@
 import apiService from "@/api.service";
+import Button from "@components/Button";
 import React from "react";
 import Form from "./Form/Form";
-import List from "./List/List";
+import Input from "./Form/Input";
+import Item from "./Item";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -19,17 +21,6 @@ function reducer(state, action) {
       });
     case "DELETE":
       return state.filter((item) => item.id !== action.payload.id);
-    case "TOGGLE":
-      return state.map((item) => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-
-        return item;
-      });
     default:
       return state;
   }
@@ -63,8 +54,16 @@ export default function Main() {
 
   return (
     <main>
-      <Form submitHandler={handleSubmit} />
-      <List todos={state} />
+      <Form submitHandler={handleSubmit}>
+        <Input />
+        <Button text="Submit" className="button-add" />
+      </Form>
+
+      <ol>
+        {state.map((todo) => (
+          <Item key={todo.id} todo={todo} dispatch={dispatch} />
+        ))}
+      </ol>
     </main>
   );
 }

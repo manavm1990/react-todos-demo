@@ -1,16 +1,10 @@
-import Button from "@components/Button";
-import Input from "./Input";
 import PropTypes from "prop-types";
 
-export default function Form({ submitHandler }) {
-  return (
-    <form onSubmit={submitHandler}>
-      <Input />
-      <Button text="Submit" className="button-add" />
-    </form>
-  );
+export default function Form({ children, submitHandler }) {
+  return <form onSubmit={submitHandler}>{children}</form>;
 }
 
 Form.propTypes = {
+  children: PropTypes.node.isRequired,
   submitHandler: PropTypes.func.isRequired,
 };
