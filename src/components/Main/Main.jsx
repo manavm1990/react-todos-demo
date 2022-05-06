@@ -38,6 +38,11 @@ function reducer(state, action) {
 export default function Main() {
   const [state, dispatch] = React.useReducer(reducer, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("handleSubmit");
+  };
+
   React.useEffect(() => {
     apiService.getAll().then((todos) => {
       dispatch({ type: "LOAD_TODOS", payload: todos });
@@ -46,7 +51,7 @@ export default function Main() {
 
   return (
     <main>
-      <Form />
+      <Form submitHandler={handleSubmit} />
       <List todos={state} />
     </main>
   );
