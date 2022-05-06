@@ -7,11 +7,18 @@ h1 {
 button {
   border-radius: 3px;
   border: none;
-  color: white;
   cursor: pointer;
+  color: white;
   font-size: 1em;
   font-weight: bold;
+  margin: 0 0.25em;
   padding: 0.5em;
+}
+
+button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
 form {
@@ -26,6 +33,10 @@ input {
   padding: 0.5em;
 }
 
+input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
 label {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -34,6 +45,10 @@ label {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+li {
+  margin: 1em 0;
 }
 
 main {
@@ -45,4 +60,35 @@ main {
 
 .button-add {
   background-color: #4caf50;
+}
+
+.button-add::after {
+  content: "\00a0➕";
+}
+
+.button-del {
+  background-color: #f44336;
+  padding: 0.25em;
+}
+
+.button-del::after {
+  content: "\00a0✖";
+}
+
+.button-edit {
+  background-color: #2196f3;
+  padding: 0.25em;
+}
+
+.button-edit::after {
+  content: "\00a0✎";
+}
+
+.button-reset {
+  background-color: #ff9800;
+  color: #333;
+}
+
+.completed {
+  text-decoration: line-through;
 }
